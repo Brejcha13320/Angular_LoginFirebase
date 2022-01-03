@@ -9,9 +9,10 @@
             </div>
             <form [formGroup]="formulario" (ngSubmit)="logear()" >
                 <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">Codigo de Usuario</label>
-                  <input type="email" class="form-control" placeholder="Usuario" formControlName="usuario">
+                  <label class="form-label">Codigo de Usuario</label>
+                  <input type="text" class="form-control" placeholder="Usuario" formControlName="usuario">
                   <div *ngIf="formulario.controls['usuario'].errors?.['required']" class="form-text">El usuario es obligatorio</div>
+                  <div *ngIf="formulario.controls['usuario'].errors?.['pattern']" class="form-text">El usuario solo contiene numeros</div>
                 </div>
 
                 <div class="mb-3" [ngStyle]="{'padding-bottom':'20px'}" >

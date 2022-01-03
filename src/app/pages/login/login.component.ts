@@ -18,7 +18,8 @@ export class LoginComponent implements OnInit {
   constructor() {
     this.formulario = new FormGroup({
       'usuario': new FormControl('', [
-        Validators.required
+        Validators.required,
+        Validators.pattern("^[0-9]*$")
       ]),
 
       'password': new FormControl('', [
