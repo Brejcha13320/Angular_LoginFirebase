@@ -1,0 +1,34 @@
+.d-flex {
+    height: 100%;
+}
+
+.first-flex {
+    width: 60%;
+}
+
+.img-first-flex {
+    width: 100%;
+    height: 100%;
+}
+
+.img-second-flex {
+    width: 200px;
+    padding-bottom: 20px;
+}
+
+.center-img-second-flex {
+    text-align: center;
+}
+
+.second-flex {
+    width: 40%;
+}
+
+button {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.container {
+    padding: 40px 50px 50px 50px;
+}
