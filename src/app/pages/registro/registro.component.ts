@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-registro',
@@ -10,15 +11,7 @@ export class RegistroComponent implements OnInit {
 
   formulario:FormGroup;
 
-  usuario:any = {
-    nombre: '',
-    apellido: '',
-    usuario: '',
-    email: '',
-    password: ''
-  }
-
-  constructor() { 
+  constructor(private _dataService: DataService ) { 
     this.formulario = new FormGroup({
       'nombre': new FormControl('', [
         Validators.required,
@@ -48,8 +41,6 @@ export class RegistroComponent implements OnInit {
 
     });
 
-    this.formulario.setValue(this.usuario);
-
   }
 
   ngOnInit(): void {
@@ -59,7 +50,12 @@ export class RegistroComponent implements OnInit {
     if(this.formulario.invalid){
       return ;
     } else {
-      console.log(this.formulario);
+      
+      this._dataService.registrar(this.formulario.value.nombre,
+                                this.formulario.value.apellido,
+                                this.formulario.value.usuario,
+                                this.formulario.value.email,
+                                this.formulario.value.password);
 
       this.formulario.reset({
         nombre: '',
@@ -68,6 +64,9 @@ export class RegistroComponent implements OnInit {
         email: '',
         password: ''
       });
+
+
+
 
     }
   }

@@ -8,8 +8,6 @@ import { RegistroComponent } from './pages/registro/registro.component';
 import { AppRoutingModule } from './app.routes';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { ReactiveFormsModule } from '@angular/forms';
-
 @NgModule({
   declarations: [
     AppComponent,
