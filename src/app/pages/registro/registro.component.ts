@@ -31,7 +31,9 @@ export class RegistroComponent implements OnInit {
       ]),
 
       'usuario': new FormControl('', [
-        Validators.required
+        Validators.required,
+        Validators.minLength(5),
+        Validators.pattern("^[0-9]*$")
       ]),
 
       'email': new FormControl('', [
@@ -44,17 +46,30 @@ export class RegistroComponent implements OnInit {
         Validators.minLength(5)
       ])
 
-      
-
     });
+
+    this.formulario.setValue(this.usuario);
+
   }
 
   ngOnInit(): void {
   }
 
   registrar(){
-    console.log(this.formulario);
-    console.log(this.formulario.controls['nombre'].errors?.['required']);
+    if(this.formulario.invalid){
+      return ;
+    } else {
+      console.log(this.formulario);
+
+      this.formulario.reset({
+        nombre: '',
+        apellido: '',
+        usuario: '',
+        email: '',
+        password: ''
+      });
+
+    }
   }
 
 }

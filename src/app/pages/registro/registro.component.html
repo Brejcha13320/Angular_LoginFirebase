@@ -1,4 +1,3 @@
-
 <div class="container">
     <h1 class="titulo">Formulario de Registro</h1>
     <form [formGroup]="formulario" (ngSubmit)="registrar()" >
@@ -18,6 +17,8 @@
           <label ss="form-label">Usuario</label>
           <input type="text" formControlName="usuario" placeholder="Usuario" class="form-control">
           <div *ngIf="formulario.controls['usuario'].errors?.['required']" class="form-text">El usuario es obligatorio</div>
+          <div *ngIf="formulario.controls['usuario'].errors?.['minlength']" class="form-text">El usuario debe tener almenos 5 numeros</div>
+          <div *ngIf="formulario.controls['usuario'].errors?.['pattern']" class="form-text">El usuario solo contiene numeros</div>
         </div>
         <div class="mb-3">
           <label ss="form-label">Email</label>
