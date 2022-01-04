@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, NgModel } from '@angular/forms';
 import { DataService } from '../../services/data.service';
 
 @Component({
@@ -10,6 +10,7 @@ import { DataService } from '../../services/data.service';
 export class RegistroComponent implements OnInit {
 
   formulario:FormGroup;
+  nom = "";
 
   constructor(private _dataService: DataService ) { 
     this.formulario = new FormGroup({
@@ -47,6 +48,7 @@ export class RegistroComponent implements OnInit {
   }
 
   registrar(){
+    console.log(this.nom);
     if(this.formulario.invalid){
       return ;
     } else {
