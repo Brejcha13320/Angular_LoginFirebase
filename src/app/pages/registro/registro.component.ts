@@ -11,7 +11,7 @@ import { UsuarioModel } from '../../models/usuario.mode';
 export class RegistroComponent implements OnInit {
 
   formulario:FormGroup;
-  usuario = new UsuarioModel;
+  usuario = new UsuarioModel();
 
   constructor(private _dataService: DataService ) { 
     this.formulario = new FormGroup({

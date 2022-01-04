@@ -12,6 +12,7 @@ export class DataService {
   registrar(usuario: UsuarioModel){
     
     console.log(usuario);
+
   }
 
   logear(usuario:string, password:string){
