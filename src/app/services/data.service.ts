@@ -14,11 +14,10 @@ export class DataService {
 
   registrar(usuario: UsuarioModel){
     this.http.post(`${this.url}/usuarios.json`, usuario ).subscribe();
-
   }
 
-  logear(usuario:string, password:string){
-
+  logear(usuario:UsuarioModel){
+    console.log(usuario);
   }
 
 }

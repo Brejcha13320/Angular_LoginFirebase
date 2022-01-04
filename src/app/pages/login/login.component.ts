@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UsuarioModel } from '../../models/usuario.mode';
+import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-login',
@@ -9,13 +11,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class LoginComponent implements OnInit {
 
   formulario:FormGroup;
+  usuario = new UsuarioModel();
 
-  usuario:any = {
-    usuario: "",
-    password: ""
-  }
-
-  constructor() {
+  constructor( private dataService:DataService ) {
     this.formulario = new FormGroup({
       'usuario': new FormControl('', [
         Validators.required,
@@ -28,8 +26,6 @@ export class LoginComponent implements OnInit {
 
     });
 
-    this.formulario.setValue( this.usuario );
-
    }
 
   ngOnInit(): void {
@@ -39,7 +35,7 @@ export class LoginComponent implements OnInit {
     if(this.formulario.invalid){
       return ;
     } else {
-      console.log(this.formulario.value);
+      this.dataService.logear(this.usuario);
     }
 
     
