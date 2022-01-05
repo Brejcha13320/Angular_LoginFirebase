@@ -21,6 +21,10 @@
                   <div *ngIf="formulario.controls['password'].errors?.['required']" class="form-text">La contraseña es obligatoria</div>
                 </div>
                 
+                <div *ngIf="errorDatos" class="alert alert-danger mb-3" role="alert">
+                    Datos Incorrectos
+                </div>
+
                 <button type="submit" class="btn btn-primary">Conectar</button>
                 <button class="btn btn-primary" [routerLink]="['/registro']" >Registrarse</button>
             </form>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UsuarioModel } from '../../models/usuario.mode';
 import { DataService } from '../../services/data.service';
 
@@ -12,8 +13,10 @@ export class LoginComponent implements OnInit {
 
   formulario:FormGroup;
   usuario = new UsuarioModel();
+  errorDatos = false;
 
-  constructor( private dataService:DataService ) {
+  constructor( private dataService:DataService,
+               private router:Router ) {
     this.formulario = new FormGroup({
       'usuario': new FormControl('', [
         Validators.required,
@@ -35,7 +38,15 @@ export class LoginComponent implements OnInit {
     if(this.formulario.invalid){
       return ;
     } else {
-      this.dataService.logear(this.usuario);
+      this.dataService.logear(this.usuario)
+          .subscribe( (data)=> {
+            if(data){
+              this.errorDatos = false;
+              this.router.navigateByUrl('/home');
+            } else {
+              this.errorDatos = true;
+            }
+          });
     }
 
     
