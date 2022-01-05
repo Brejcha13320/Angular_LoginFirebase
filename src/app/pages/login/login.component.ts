@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
           .subscribe( (data)=> {
             if(data){
               this.errorDatos = false;
-              this.router.navigateByUrl('/home');
+              this.router.navigateByUrl(`/home/${this.usuario.usuario}`);
             } else {
               this.errorDatos = true;
             }

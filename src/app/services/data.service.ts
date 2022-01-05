@@ -17,8 +17,7 @@ export class DataService {
   registrar(usuario: UsuarioModel){
     this.http.post(`${this.url}/usuarios.json`, usuario ).subscribe();
   }
-  
-  //malo hay que hace un mapeo
+
   logear(usuario:UsuarioModel){
     return this.http.get(`${this.url}/usuarios.json`)
         .pipe(
@@ -26,11 +25,9 @@ export class DataService {
             return this.validarLogin(respuesta, usuario);
           })
         );
-
   }
 
   validarLogin(data:any, usuario:UsuarioModel){
-
     const usuarios: UsuarioModel[] = [];
     let findData = false;
     this.isAutenticated = false;
@@ -44,24 +41,53 @@ export class DataService {
       });
 
       for(let i = 0 ; i < usuarios.length ; i++){
-        console.log( usuarios[i].usuario + " " + usuarios[i].password );
         if(usuarios[i].usuario === usuario.usuario && usuarios[i].password === usuario.password){
           findData = true;
           this.isAutenticated = true;
         }
       }
-      console.log("find data: " + findData);
       return findData;
     }
 
+  }
+
+  findUsuario(data:any, usuario:string){
+    const usuarios: UsuarioModel[] = [];
+    let userModel = new UsuarioModel();
+    if(data === null){
+      return null;
+    } else {
+      Object.keys( data ).forEach( (key) => {
+        const usuario: UsuarioModel = data[key];
+        usuarios.push(usuario);
+      });
+
+
+      for(let i = 0 ; i < usuarios.length ; i++){
+        if(usuarios[i].usuario === usuario){
+          userModel = usuarios[i];
+        }
+      }
+      return userModel;
+    }
+
+  }
+
+  getUsuario(usuario:string){
+    return this.http.get(`${this.url}/usuarios.json`)
+        .pipe(
+          map( (respuesta:any) => {
+            return this.findUsuario(respuesta, usuario);
+          })
+        );
   }
 
   getAutenticated(){
     return this.isAutenticated;
   }
 
-
-
-  
+  logOut(){
+    this.isAutenticated = false;
+  }
 
 }
